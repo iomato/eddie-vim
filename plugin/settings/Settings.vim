@@ -28,7 +28,7 @@ set wildmode=longest,list             " use emacs-style tab completion when sele
 set wildmenu                          " make tab completion for files/buffers act like bash
 set key=			                        " disable encryption
 set synmaxcol=128
-set viminfo=			                    " disable .viminfo file
+"set viminfo=			                    " disable .viminfo file
 set ttyfast                           " send more chars while redrawing
 
 filetype on                           " enable filetype detection
@@ -90,6 +90,9 @@ autocmd WinLeave * setlocal nocursorline
 " ======================================
 " remove tailing whitespace
 autocmd BufWritePre * :%s/\s\+$//e
+
+" restore cursor position
+au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
 
 " comment
 map <Leader><Leader> <Leader>c<space>
